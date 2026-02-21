@@ -1,9 +1,19 @@
 public class Mahasiswa10 {
-
+    
     String nama;
     String nim;
     String kelas;
     double ipk;
+    
+    Mahasiswa10 () {
+    }
+
+    Mahasiswa10(String nm, String nim, double ipk, String kls) {
+        nama = nm;
+        this.nim = nim;
+        this.ipk = ipk;
+        kelas = kls;
+    }
 
     void tampilkanInformasi() {
         System.out.println("Nama: " + nama);
