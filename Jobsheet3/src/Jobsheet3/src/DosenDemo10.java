@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class DosenDemo10 {
     public static void main(String[] args) {
-        
+
         Scanner sc = new Scanner(System.in);
 
         System.out.print("Masukkan jumlah kolom data dosen: ");
@@ -12,6 +12,7 @@ public class DosenDemo10 {
         sc.nextLine();
 
         Dosen10[] dataDosen = new Dosen10[kolom];
+        DataDosen10 newDataDosen = new DataDosen10();
         String kode = null, nama = null, jenisKelamin = null;
         int usia = 0;
 
@@ -30,17 +31,21 @@ public class DosenDemo10 {
 
             dataDosen[i] = new Dosen10(kode, nama, jenisKelamin, usia);
         }
+
+        // tampil semua
+        newDataDosen.dataSemuaDosen(dataDosen);
+
+        // jumlah dosen per jenis kelamin
+        newDataDosen.jumlahDosenPerJenisKelamin(dataDosen);
+
+        // rerata usia dosen per jenis kelamin
+        newDataDosen.rerataUsiaDosenPerJenisKelamin(dataDosen);
         
-        int index = 1;
-        for (Dosen10 dosen : dataDosen) {
-            System.out.println("Data Dosen ke-" + index);
-            System.out.println("Kode          : " + dosen.kode);
-            System.out.println("Nama          : " + dosen.nama);
-            System.out.println("Jenis Kelamin : " + dosen.jenisKelamin);
-            System.out.println("Usia          : " + dosen.usia);
-            System.out.println("-------------------");
-            index++;
-        }
+        // dosen tertua
+        newDataDosen.infoDosenPalingTua(dataDosen);
+
+        // dosen termuda
+        newDataDosen.infoDosenPalingMuda(dataDosen);
 
         sc.close();
     }

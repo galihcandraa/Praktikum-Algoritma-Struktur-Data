@@ -6,6 +6,9 @@ public class Dosen10 {
     String jenisKelamin;
     int usia;
 
+    public Dosen10() {
+    }
+
     public Dosen10(String kode, String nama, String jenisKelamin, int usia) {
         this.kode = kode;
         this.nama = nama;
