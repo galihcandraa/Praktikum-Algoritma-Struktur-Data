@@ -1,5 +1,3 @@
-package Jobsheet3.src;
-
 import java.util.Scanner;
 
 public class DosenDemo10 {

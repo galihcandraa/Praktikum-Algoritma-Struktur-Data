@@ -1,5 +1,3 @@
-package Jobsheet3.src;
-
 public class Matakuliah10 {
     public String kode;
     public String nama;

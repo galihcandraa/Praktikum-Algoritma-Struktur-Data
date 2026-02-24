@@ -1,5 +1,3 @@
-package Jobsheet3.src;
-
 public class DataDosen10 {
 
     public void dataSemuaDosen(Dosen10[] arrayOfDosen) {
