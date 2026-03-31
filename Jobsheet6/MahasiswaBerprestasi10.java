@@ -2,8 +2,12 @@ package Jobsheet6;
 
 public class MahasiswaBerprestasi10 {
 
-    Mahasiswa10[] listMhs = new Mahasiswa10[5];
+    Mahasiswa10[] listMhs;
     int idx;
+
+    MahasiswaBerprestasi10(int jml) {
+        listMhs = new Mahasiswa10[jml];
+    }
 
     void tambah(Mahasiswa10 m) {
         if (idx < listMhs.length) {
