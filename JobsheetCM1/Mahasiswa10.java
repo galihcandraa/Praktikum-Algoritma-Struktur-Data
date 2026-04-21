@@ -15,3 +15,4 @@ public class Mahasiswa10 {
         System.out.printf("| %-10s | %-10s | %-25s |\n", nim, nama, prodi);
     }
 }
+

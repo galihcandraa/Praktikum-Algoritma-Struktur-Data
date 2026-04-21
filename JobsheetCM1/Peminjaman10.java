@@ -16,7 +16,7 @@ public class Peminjaman10 {
 
     void hitungDenda() {
         if (lamaPinjam > 5) {
-            terlambat = lamaPinjam - 5;
+            terlambat = lamaPinjam - batasPinjam;
             denda = terlambat * 2000;
         } else {
             denda = 0;
@@ -24,6 +24,6 @@ public class Peminjaman10 {
     }
 
     void tampilPeminjaman() {
-        System.out.printf("| %-10s | %-15s | %-5d | %-5d | %-8d |\n", mhs.nama, buku.judul, lamaPinjam, terlambat, denda);
+        System.out.printf("| %-10s | %-15s | %-12d | %-10d | %-8d |\n", mhs.nama, buku.judul, lamaPinjam, terlambat, denda);
     }
 }

@@ -12,6 +12,6 @@ public class Buku10 {
     }
 
     void tampilBuku() {
-        System.out.printf("| %-10s | %-15s | %-10d |\n", kodeBuku, judul, tahunTerbit);
+        System.out.printf("| %-10s | %-15s | %-12d |\n", kodeBuku, judul, tahunTerbit);
     }
 }

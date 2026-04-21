@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class SistemManajemen10 {
 
-    // data tiap object/class
     static void staticData(Mahasiswa10[] dataMhs, Buku10[] dataBuku, Peminjaman10[] dataPeminjaman) {
         dataMhs[0] = new Mahasiswa10("22001", "Andi", "Teknik Informatika");
         dataMhs[1] = new Mahasiswa10("22002", "Budi", "Teknik Informatika");
@@ -28,7 +27,7 @@ public class SistemManajemen10 {
         System.out.println("2. Tampilkan Buku");
         System.out.println("3. Tampilkan Peminjaman");
         System.out.println("4. Urutkan Berdasarkan Denda");
-        System.out.println("5. Cari Berdasarkan Denda");
+        System.out.println("5. Cari Berdasarkan NIM");
         System.out.println("0. Keluar");
         System.out.print("Pilihan: ");
     }
@@ -66,14 +65,14 @@ public class SistemManajemen10 {
         }
         return dataPeminjaman;
     }
-    
-    static Mahasiswa10[] urutanNIM(Mahasiswa10[] dataMhs) {
+
+    static Peminjaman10[] urutanNIM(Peminjaman10[] dataMhs) {
         int jumData = dataMhs.length;
-        Mahasiswa10 temp = null;
-        
+        Peminjaman10 temp = null;
+
         for (int i = 0; i < jumData - 1; i++) {
             for (int j = 1; j < jumData - i; j++) {
-                int resultCompare = dataMhs[j - 1].nim.compareTo(dataMhs[j].nim);
+                int resultCompare = dataMhs[j - 1].mhs.nim.compareTo(dataMhs[j].mhs.nim);
                 if (resultCompare > 0) {
                     temp = dataMhs[j];
                     dataMhs[j] = dataMhs[j - 1];
@@ -84,21 +83,20 @@ public class SistemManajemen10 {
         return dataMhs;
     }
 
-    static int cariNim(String keyword, Mahasiswa10[] dataMhs, Peminjaman10[] dataPeminjaman, int left, int right) {
-        Mahasiswa10[] dataUrut = urutanNIM(dataMhs);
+    static int cariNim(Peminjaman10[] dataPeminjaman, String keyword, int left, int right) {
+        Peminjaman10[] dataUrut = urutanNIM(dataPeminjaman);
 
         if (right >= left) {
             int mid = (left + right) / 2;
 
-            // var hasil dari compare data indeks mid dengan keyword
-            int resultCompare = dataUrut[mid].nim.compareTo(keyword);
+            int resultCompare = dataUrut[mid].mhs.nim.compareTo(keyword);
 
             if (resultCompare == 0) {
                 return mid;
             } else if (resultCompare < 0) {
-                return cariNim(keyword, dataUrut, dataPeminjaman, mid + 1, right);
+                return cariNim(dataUrut, keyword, mid + 1, right);
             } else {
-                return cariNim(keyword, dataUrut, dataPeminjaman, left, mid - 1);
+                return cariNim(dataUrut, keyword, left, mid - 1);
             }
         }
         return -1;
@@ -125,22 +123,29 @@ public class SistemManajemen10 {
             switch (pil) {
                 case 1:
                     System.out.println("Daftar Mahasiswa");
+                    System.out.printf("| %-10s | %-10s | %-25s |\n", "NIM", "Nama", "Prodi");
                     tampilMhs(dataMhs);
                     break;
 
                 case 2:
                     System.out.println("Daftar Buku:");
+                    System.out.printf("| %-10s | %-15s | %-12s |\n", "Kode Buku", "Judul", "Tahun Terbit");
                     tampilBuku(dataBuku);
                     break;
 
                 case 3:
                     System.out.println("Data Peminjaman");
+                    System.out.printf("| %-10s | %-15s | %-12s | %-10s | %-8s |\n", "Nama", "Judul Buku",
+                            "Lama Pinjam", "Terlambat", "Denda");
                     tampilPeminjaman(dataPeminjaman);
                     break;
 
                 case 4:
-                    System.out.println("Setelah diurutkan (denda terbesar)");
+                    System.out.println("Setelah diurutkan (denda terkecil)");
                     Peminjaman10[] dataUrut = urutanDenda(dataPeminjaman);
+
+                    System.out.printf("| %-10s | %-15s | %-12s | %-10s | %-8s |\n", "Nama", "Judul Buku",
+                            "Lama Pinjam", "Terlambat", "Denda");
                     for (Peminjaman10 data : dataUrut) {
                         data.tampilPeminjaman();
                     }
@@ -150,11 +155,13 @@ public class SistemManajemen10 {
                     System.out.println("===  PENCARIAN NIM ===");
                     System.out.print("Masukkan NIM: ");
                     String cari = sc.nextLine();
-                    int posisi = cariNim(cari, dataMhs, dataPeminjaman, 0, dataMhs.length);
+                    int posisi = cariNim(dataPeminjaman, cari, 0, dataMhs.length - 1);
                     if (posisi == -1) {
                         System.out.println("Data tidak ditemukan!");
                     } else {
-                        dataMhs[posisi].tampilMahasiswa();
+                        System.out.printf("| %-10s | %-15s | %-12s | %-10s | %-8s |\n", "Nama", "Judul Buku",
+                                "Lama Pinjam", "Terlambat", "Denda");
+                        dataPeminjaman[posisi].tampilPeminjaman();
                     }
                     break;
 
@@ -162,11 +169,10 @@ public class SistemManajemen10 {
                     System.out.println("Keluar");
                     break;
             }
-            if (pil == 0) {
-                break;
-            }
         } while (pil != 0);
 
         sc.close();
     }
 }
+
+
