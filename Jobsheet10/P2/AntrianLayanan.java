@@ -41,6 +41,16 @@ public class AntrianLayanan {
         }
     }
 
+    public void lihatTerbelakang() {
+        if (IsEmpty()) {
+            System.out.println("Antrian kosong");
+        } else {
+            System.out.println("Mahasiswa terdepan: ");
+            System.out.println("NIM - NAMA - PRODI - KELAS");
+            data[rear].tampilkanData();
+        }
+    }
+
     public void tampilkanSemua() {
         if (IsEmpty()) {
             System.out.println("Antrian kosong");
