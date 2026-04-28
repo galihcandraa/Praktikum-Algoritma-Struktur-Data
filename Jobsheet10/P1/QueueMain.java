@@ -30,14 +30,22 @@ public class QueueMain {
                 case 1:
                     System.out.print("Masukkan data baru: ");
                     int dataMasuk = sc.nextInt();
-                    Q.Enqueue(dataMasuk);
+                    int procsMasuk = Q.Enqueue(dataMasuk);
+                    if (procsMasuk == -1) {
+                        System.out.println("Keluar.");
+                        pilih = 0;
+                    }
                     break;
 
                 case 2:
                     int dataKeluar = Q.Dequeue();
+                    if (dataKeluar == -1) {
+                        System.out.println("Keluar.");
+                        pilih = 0;
+                    }
                     if (dataKeluar != 0) {
                         System.out.println("Data yang dikeluarkan: " + dataKeluar);
-                    }
+                    } 
                     break;
 
                 case 3:
