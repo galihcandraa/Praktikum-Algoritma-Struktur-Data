@@ -11,7 +11,7 @@ public class DoubleLinkedListMain10 {
         String nama = sc.nextLine();
         System.out.print("Masukkan kelas  : ");
         String kelas = sc.nextLine();
-        System.out.print("Masukkan ipk    : ");
+        System.out.print("Masukkan IPK    : ");
         double ipk = sc.nextDouble();
         Mahasiswa10 data = new Mahasiswa10(nim, nama, kelas, ipk);
         return data;
@@ -26,7 +26,7 @@ public class DoubleLinkedListMain10 {
             System.out.println("\n ===== MENU DOUBLE LINKED LIST");
             System.out.println("1. Tambah data di awal");
             System.out.println("2. Tambah data di akhir");
-            System.out.println("3. Sisipkan data di tengah (setelah NIM");
+            System.out.println("3. Sisipkan data di tengah (setelah NIM)");
             System.out.println("4. Hapus data di awal");
             System.out.println("5. Hapus data di akhir");
             System.out.println("6. Tampilkan data");
@@ -55,11 +55,13 @@ public class DoubleLinkedListMain10 {
                     break;
 
                 case 4:
-                    // list.removeFirst();
+                    list.head.data.tampil();
+                    list.removeFirst();
                     break;
 
                 case 5:
-                    // list.removeLast();
+                    list.tail.data.tampil();
+                    list.removeLast();
                     break;
 
                 case 6:
