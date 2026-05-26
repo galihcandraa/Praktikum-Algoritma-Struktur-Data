@@ -109,7 +109,7 @@ public class BinaryTree10 {
                 isLeftChild = true;
             } else if(ipk > current.mahasiswa.ipk) {
                 parent = current;
-                current = current.left;
+                current = current.right;
                 isLeftChild = false;
             }
         }
@@ -165,6 +165,69 @@ public class BinaryTree10 {
                 }
                 successor.left = current.left;
             } 
+        }
+    }
+
+    public void addRekursif(Mahasiswa10 mahasiswa) {
+        root = addRekursif(root, mahasiswa);
+    }
+
+    public Node10 addRekursif(Node10 current, Mahasiswa10 mahasiswa) {
+        if (current == null) {
+            return new Node10(mahasiswa);
+        }
+
+        if (mahasiswa.ipk < current.mahasiswa.ipk) {
+            current.left = addRekursif(current.left, mahasiswa);
+        } else if (mahasiswa.ipk > current.mahasiswa.ipk) {
+            current.right = addRekursif(current.right, mahasiswa);
+        }
+        return current;
+    }
+
+    public void cariMinIPK() {
+        if (root == null) {
+            System.out.println("Tree kosong");
+            return;
+        }
+
+        Node10 current = root;
+
+        while (current.left != null) {
+            current = current.left;
+        }
+
+        current.mahasiswa.tampilInformasi();
+    }
+
+    public void cariMaxIPK() {
+        if (root == null) {
+            System.out.println("Tree kosong");
+            return;
+        }
+
+        Node10 current = root;
+
+        while (current.right != null) {
+            current = current.right;
+        }
+
+        current.mahasiswa.tampilInformasi();
+    }
+
+    public void tampilMahasiswaIPKdiAtas(double ipkBatas) {
+        tampilMahasiswaIPKdiAtas(root, ipkBatas);
+    }
+
+    public void tampilMahasiswaIPKdiAtas(Node10 node, double ipkBatas) {
+        if (node != null) {
+            tampilMahasiswaIPKdiAtas(node.left, ipkBatas);
+
+            if (node.mahasiswa.ipk > ipkBatas) {
+                node.mahasiswa.tampilInformasi();
+            }
+
+            tampilMahasiswaIPKdiAtas(node.right, ipkBatas);
         }
     }
 }
